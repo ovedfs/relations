@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateCreatorsTable extends Migration
+class CreateTaggablesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,11 @@ class CreateCreatorsTable extends Migration
      */
     public function up()
     {
-        Schema::create('creators', function (Blueprint $table) {
+        Schema::create('taggables', function (Blueprint $table) {
             $table->id();
-            $table->string('title');
-            $table->text('bio');
-            $table->foreignId('user_id')
+            $table->unsignedBigInteger('taggable_id');
+            $table->string('taggable_type');
+            $table->foreignId('tag_id')
                 ->constrained()
                 ->onDelete('cascade');
             $table->timestamps();
@@ -31,6 +31,6 @@ class CreateCreatorsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('creators');
+        Schema::dropIfExists('taggables');
     }
 }

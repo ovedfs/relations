@@ -1,0 +1,26 @@
+<?php
+
+namespace Database\Factories;
+
+use App\Models\Creator;
+use App\Models\Category;
+use Illuminate\Database\Eloquent\Factories\Factory;
+
+class PostFactory extends Factory
+{
+    /**
+     * Define the model's default state.
+     *
+     * @return array
+     */
+    public function definition()
+    {
+        return [
+            'title' => $this->faker->sentence(),
+            'body' => $this->faker->paragraph(),
+            'image' => $this->faker->imageUrl(640, 480, 'tech', true),
+            'category_id' => Category::all()->random()->id,
+            'creator_id' => Creator::all()->random()->id,
+        ];
+    }
+}

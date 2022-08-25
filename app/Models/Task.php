@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Creator extends Model
+class Task extends Model
 {
     use HasFactory;
 
@@ -14,8 +14,8 @@ class Creator extends Model
         return $this->belongsTo(User::class);
     }
 
-    public function posts()
+    public function tags()
     {
-        return $this->HasMany(Post::class);
+        return $this->morphToMany(Tag::class, 'taggable');
     }
 }
